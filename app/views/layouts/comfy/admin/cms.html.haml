@@ -1,5 +1,6 @@
 !!!
 %html{:lang => I18n.locale}
   = render 'layouts/comfy/admin/cms/head'
+  = render 'layouts/comfy/admin/cms/flash'
   = render 'layouts/comfy/admin/cms/body'
   = render 'comfy/admin/cms/files/modal' if @site && !@site.new_record?
