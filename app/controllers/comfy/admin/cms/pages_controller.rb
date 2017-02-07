@@ -86,7 +86,9 @@ class Comfy::Admin::Cms::PagesController < Comfy::Admin::Cms::BaseController
   def clear_cache(page = @page)
     page_and_ancestors = [page] + page.ancestors
     page_and_ancestors.each do |p|
-      expire_page controller: '/comfy/cms/content', action: 'show', cms_path: p.full_path
+      # Expire index.html if page is the root page.
+      path = p.full_path == '/' ? '/index' : p.full_path
+      expire_page controller: '/comfy/cms/content', action: 'show', cms_path: path
     end
   end
 
